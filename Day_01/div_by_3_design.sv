@@ -15,19 +15,19 @@ module div_by_3 (input logic x, logic clk, logic reset, output logic y);
   always_comb begin
     
     case(state) 
-      3'b000:if(x) nxt_state = 3'b001;
-             else nxt_state = 3'b000;
-      3'b001:if(x) nxt_state = 3'b000;
-             else nxt_state = 3'b010;
-      3'b010:if(x) nxt_state = 3'b010;
-             else nxt_state = 3'b001;
-      default: nxt_state = 3'b000;
+      2'b00:if(x) nxt_state = 2'001;
+             else nxt_state = 2'b00;
+      2'b01:if(x) nxt_state = 2'b00;
+             else nxt_state = 2'b10;
+      2'b10:if(x) nxt_state = 2'b10;
+             else nxt_state = 2'b01;
+      default: nxt_state = 2'b00;
       endcase
     end
   
 //moore_fsm
-  //assign p = (state == 3'b000);
+  //assign p = (state == 2'b00);
   //mealy fsm
-  assign y = (nxt_state == 3'b000 && ~x) || (nxt_state == 3'b001 && x);
+  assign y = (nxt_state == 2'b00 && ~x) || (nxt_state == 2'b01 && x);
 endmodule
   
